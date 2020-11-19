@@ -7,7 +7,7 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2020/21
 
 ## Vpliv COVIDA-19 na gospodarstvo v Sloveniji in po svetu
 
-V svoje projektu bom analiziral vpliv COVIDA na domače in tuje gospodarstvo. V Sloveniji se bom osredotočil na dohodkovno strukturo BDP-a, v primerjavi s svetom pa bom ločil potrošnjo gospodinjstev in potrošnjo države, ki sta po mojem mnenju eni izmed najboljših pokazateljic sprememb gospodarstva glede na trenutne razmere. Posamezne podatke bom primerjal po kvartalih, saj tako lahko še bolj natančno ocenimo razlike kot če bi jih primerjal samo po letih, poleg tega pa gledamo še bolj sveže podatke. Na koncu bom še razlike v gospodarstvu primerjal s prisotnostjo virusa v posamezni državi in s populacijo te države, ter tako analiziral katere države je najhuje prizadelo ne glede na njihovo velikost, in kje med njimi leži Slovenija.
+V svoje projektu bom analiziral vpliv COVIDA na domače in tuje gospodarstvo. V Sloveniji se bom osredotočil na dohodkovno strukturo BDP-a, v primerjavi s svetom pa bom ločil potrošnjo gospodinjstev in potrošnjo države, ki sta po mojem mnenju eni izmed najboljših pokazateljic sprememb gospodarstva glede na trenutne razmere. Posamezne podatke bom primerjal po kvartalih, saj tako lahko še bolj natančno ocenimo razlike kot če bi jih primerjal samo po letih, poleg tega pa gledamo še bolj sveže podatke. Na koncu bom še razlike v gospodarstvu primerjal s prisotnostjo virusa v posamezni državi in s populacijo te države, ter tako analiziral katere države je najhuje prizadelo ne glede na njihovo velikost.
 
 ## Program
 
