@@ -13,7 +13,7 @@ V svojem projektu bom analiziral vpliv COVIDA-19 na domače in tuje gospodarstvo
 
 ### Skrčen plan dela 
 
-1. Po uvozu vseh podatkov se bom najprej posvetil dohodkovni strukturi Slovenije, gleda na zadnja tri leta (po kvartalih).
+1. Po uvozu vseh podatkov se bom najprej posvetil dohodkovni strukturi Slovenije, glede na zadnja tri leta (po kvartalih).
 2. Nato se bom lotil primerjave držav, prvo po potrošnji gospodinjstev, nato pa še po potrošnji države.
 3. Potem bom primerjal še države po BDP, zraven pa dodal še podatke iz 2. in 3. tabele. Na koncu bom iz vseh zbranih podatkov sestavil novo tabelo, v katero bom vključil še populacijo in okuženost posamezne države.
 4. Na koncu bom še s pomočjo zemljevida (že vgrajenega v R) prikazal rezultate. Zemljevid bo podan v interaktivni obliki.
