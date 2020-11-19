@@ -24,6 +24,8 @@ V svojem projektu bom analiziral vpliv COVIDA-19 na domače in tuje gospodarstvo
 - SiStat( https://pxweb.stat.si/SiStatData/pxweb/sl/Data/-/0300240S.px/table/tableViewLayout2/)
 - https://www.worldometers.info/coronavirus/?utm_campaign=homeAdvegas1?%22%20%5Cl%20%22countries
 
+Podatke iz Sistata bom uvozil v obliki csv, vse ostale podatke pa bom naložil preko html.
+
 ## Program
 
 Glavni program in poročilo se nahajata v datoteki `projekt.Rmd`.
