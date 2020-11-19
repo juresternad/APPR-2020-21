@@ -11,6 +11,10 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2020/21
 
 V svoje projektu bom analiziral vpliv COVIDA na domače in tuje gospodarstvo. V Sloveniji se bom osredotočil na dohodkovno strukturo BDP-a, v primerjavi s svetom pa bom ločil potrošnjo gospodinjstev in potrošnjo države, ki sta po mojem mnenju eni izmed najboljših pokazateljic sprememb gospodarstva glede na trenutne razmere. Posamezne podatke bom primerjal po kvartalih, saj tako lahko še bolj natančno ocenimo razlike kot če bi jih primerjal samo po letih, poleg tega pa gledamo še bolj sveže podatke. Na koncu bom še razlike v gospodarstvu primerjal s prisotnostjo virusa v posamezni državi in s populacijo te države, ter tako analiziral katere države je najhuje prizadelo ne glede na njihovo velikost in kako hudo je prizadelo nas v primerjavi z ostalimi.
 
+### Tabele
+
+Tabela 1: ** Primerjava v Sloveniji glede na dohodkovno strukturo ** : Posamezne panoge(kmetijstvo, gradbeništvo, ...) glede na posamezne kvartale  
+
 ## Program
 
 Glavni program in poročilo se nahajata v datoteki `projekt.Rmd`.
