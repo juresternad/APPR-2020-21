@@ -20,7 +20,7 @@ Tabela 4 **Primerjava držav po BDP**:  Posamezni kvartali, populacija in števi
 
 ### Viri
 
-- Eurostat(https://ec.europa.eu/eurostat/databrowser/view/teina010/default/table?lang=en,https://ec.europa.eu/eurostat/databrowser/view/teina020/default/table?lang=en,https://ec.europa.eu/eurostat/databrowser/view/teina030/default/table?lang=en)
+- Eurostat(https://ec.europa.eu/eurostat/databrowser/view/teina010/default/table?lang=en, https://ec.europa.eu/eurostat/databrowser/view/teina020/default/table?lang=en, https://ec.europa.eu/eurostat/databrowser/view/teina030/default/table?lang=en)
 - SiStat(https://pxweb.stat.si/SiStatData/pxweb/sl/Data/-/0300240S.px/table/tableViewLayout2/)
 - https://www.worldometers.info/coronavirus/?utm_campaign=homeAdvegas1?%22%20%5Cl%20%22countries
 
