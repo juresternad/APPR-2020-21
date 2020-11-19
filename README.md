@@ -15,8 +15,8 @@ V svoje projektu bom analiziral vpliv COVIDA na domače in tuje gospodarstvo. V 
 
 Tabela 1: **Primerjava v Sloveniji glede na dohodkovno strukturo**: Posamezne panoge(kmetijstvo, gradbeništvo, ...) glede na posamezne kvartale(2018-2020)  
 Tabela 2: **Primerjava držav po potrošnji gospodinjstev**:  Posamezni kvartali glede na države, na koncu še izračunane razlike kvartalov 2020 in kvartalov 2018, 2019
-Tabela 3 **Primerjava držav po državnih izdatkih**:  Posamezni kvartali glede na države, na koncu še izračunane razlike kvartalov 2020 in kvartalov 2018, 2019
-Tabela 4 **Primerjava držav po BDP**:  Posamezni kvartali, populacija in število zabeleženih primerov glede na države 
+Tabela 3: **Primerjava držav po državnih izdatkih**:  Posamezni kvartali glede na države, na koncu še izračunane razlike kvartalov 2020 in kvartalov 2018, 2019
+Tabela 4: **Primerjava držav po BDP**:  Posamezni kvartali, populacija in število zabeleženih primerov glede na države 
 
 ### Viri
 
