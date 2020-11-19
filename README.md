@@ -9,7 +9,7 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2020/21
 
 ### Tematika
 
-V svoje projektu bom analiziral vpliv COVIDA na domače in tuje gospodarstvo. V Sloveniji se bom osredotočil na dohodkovno strukturo BDP-a, v primerjavi s svetom pa bom ločil potrošnjo gospodinjstev in potrošnjo države, ki sta po mojem mnenju eni izmed najboljših pokazateljic sprememb gospodarstva glede na trenutne razmere. Posamezne podatke bom primerjal po kvartalih, saj tako lahko še bolj natančno ocenimo razlike kot če bi jih primerjal samo po letih, poleg tega pa gledamo še bolj sveže podatke. Na koncu bom razlike v gospodarstvu primerjal še s prisotnostjo virusa v posamezni državi in s populacijo te države, ter tako analiziral katere države je najhuje prizadelo ne glede na njihovo velikost in kako hudo je prizadelo nas v primerjavi z ostalimi.
+V svojem projektu bom analiziral vpliv COVIDA na domače in tuje gospodarstvo. V Sloveniji se bom osredotočil na dohodkovno strukturo BDP-a, v primerjavi s svetom pa bom ločil potrošnjo gospodinjstev in potrošnjo države, ki sta po mojem mnenju eni izmed najboljših pokazateljic sprememb gospodarstva glede na trenutne razmere. Posamezne podatke bom primerjal po kvartalih, saj tako lahko še bolj natančno ocenimo razlike kot če bi jih primerjal samo po letih, poleg tega pa gledamo še bolj sveže podatke. Na koncu bom razlike v gospodarstvu primerjal še s prisotnostjo virusa v posamezni državi in s populacijo te države, ter tako analiziral katere države je najhuje prizadelo ne glede na njihovo velikost in kako hudo je prizadelo nas v primerjavi z ostalimi.
 
 ### Tabele
 
