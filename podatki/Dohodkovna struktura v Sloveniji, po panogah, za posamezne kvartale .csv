@@ -1,0 +1,43 @@
+Dohodkovna struktura BDP (SKD 2008), tekoèe cene, mio EUR, Slovenija, èetrtletno
+
+"TRANSAKCIJE,""Originalni podatki 2018Q1"",""Originalni podatki 2018Q2"",""Originalni podatki 2018Q3"",""Originalni podatki 2018Q4"",""Originalni podatki 2019Q1"",""Originalni podatki 2019Q2"",""Originalni podatki 2019Q3"",""Originalni podatki 2019Q4"",""Originalni podatki 2020Q1"",""Originalni podatki 2020Q2"""
+Sredstva za zaposlene,5384.5,5970.5,5527.6,5934.4,5810.5,6525.3,5950.7,6297.1,6068.4,6282.8
+..Sredstva za zaposlene A Kmetijstvo, lov, gozdarstvo, ribištvo,26.8,31.2,29.8,31.9,28.9,33.5,30.4,31.3,30.4,33.5
+..Sredstva za zaposlene BCDE Rudarstvo, predelovalne dejavnosti, oskrba z elektriko in vodo, ravnanje z odplakami, saniranje okolja,1495.1,1650.9,1501.2,1666.3,1602.3,1805.4,1599.9,1737.4,1670.3,1649.9
+....od tega: sredstva za zaposlene C Predelovalne dejavnosti,1331.8,1468.5,1339.4,1489.7,1433.7,1617.2,1430.0,1553.3,1494.5,1448.9
+..Sredstva za zaposlene F Gradbeništvo,280.6,321.0,322.9,339.5,323.9,381.5,369.5,380.0,344.8,377.9
+..Sredstva za zaposlene GHI Trgovina in popravila vozil, promet in skladišèenje, gostinstvo,1161.0,1297.3,1193.8,1304.7,1262.5,1421.1,1292.5,1376.2,1291.2,1262.1
+..Sredstva za zaposlene J Informacijske in komunikacijske dejavnosti,206.0,226.5,213.9,229.8,227.9,252.5,232.2,252.3,247.2,259.4
+..Sredstva za zaposlene K Finanène in zavarovalniške dejavnosti,202.5,210.0,183.6,206.1,215.5,224.6,196.9,216.2,214.7,225.7
+..Sredstva za zaposlene L Poslovanje z nepremièninami,33.6,39.4,34.1,36.3,35.3,38.7,37.9,38.3,37.2,39.4
+..Sredstva za zaposlene MN Strokovne, znanstvene, tehniène dejavnosti in druge raznovrstne poslovne dejavnosti,601.6,662.3,661.6,677.7,630.2,699.6,692.9,705.9,662.8,618.1
+..Sredstva za zaposlene OPQ Uprava in obramba, izobraževanje, zdravstvo in socialno varstvo,1238.9,1378.1,1244.6,1293.7,1334.5,1500.9,1343.2,1394.4,1417.4,1671.6
+..Sredstva za zaposlene RST Druge storitvene dejavnosti,138.3,153.8,142.2,148.6,149.4,167.5,155.2,165.1,152.5,145.1
+Bruto plaèe,4603.8,5179.4,4736.8,5087.0,4966.5,5676.4,5098.9,5390.2,5188.0,5465.4
+..Bruto plaèe A Kmetijstvo, lov, gozdarstvo, ribištvo,23.0,27.0,25.5,27.3,24.6,29.0,25.9,26.6,25.9,28.9
+..Bruto plaèe BCDE Rudarstvo, predelovalne dejavnosti, oskrba z elektriko in vodo, ravnanje z odplakami, saniranje okolja,1259.6,1415.9,1264.6,1404.3,1348.6,1556.0,1349.6,1464.8,1405.9,1425.7
+....od tega: Bruto plaèe C Predelovalne dejavnosti,1124.8,1262.7,1131.4,1258.8,1209.4,1397.5,1209.5,1313.1,1261.3,1256.5
+..Bruto plaèe F Gradbeništvo,245.3,282.1,282.3,296.7,282.4,336.2,322.6,331.8,300.7,333.0
+..Bruto plaèe GHI Trgovina in popravila vozil, promet in skladišèenje, gostinstvo,1006.8,1138.2,1035.9,1132.9,1094.0,1249.7,1122.0,1194.4,1118.9,1115.0
+..Bruto plaèe J Informacijske in komunikacijske dejavnosti,173.8,194.0,180.6,193.6,192.5,217.0,196.0,212.8,208.9,221.9
+..Bruto plaèe K Finanène in zavarovalniške dejavnosti,172.3,180.3,155.2,174.3,184.3,194.4,167.2,183.6,183.1,195.1
+..Bruto plaèe L Poslovanje z nepremièninami,30.1,35.8,30.5,32.4,31.5,34.9,34.1,34.1,33.1,35.4
+..Bruto plaèe MN Strokovne, znanstvene, tehniène dejavnosti in druge raznovrstne poslovne dejavnosti,535.5,595.8,594.6,606.0,560.4,629.7,621.8,630.0,589.7,556.9
+..Bruto plaèe OPQ Uprava in obramba, izobraževanje, zdravstvo in socialno varstvo,1036.6,1174.4,1043.2,1089.4,1117.8,1281.4,1124.4,1168.3,1188.5,1424.8
+..Bruto plaèe RST Druge storitvene dejavnosti,120.8,135.8,124.3,129.9,130.4,148.0,135.4,144.0,133.1,128.7
+Socialni prispevki delodajalcev,780.7,791.2,790.8,847.4,844.0,848.9,851.8,906.9,880.4,817.4
+..Socialni prispevki delodajalcev A Kmetijstvo, lov, gozdarstvo, ribištvo,3.8,4.2,4.3,4.6,4.3,4.5,4.6,4.7,4.5,4.6
+..Socialni prispevki delodajalcev BCDE Rudarstvo, predelovalne dejavnosti, oskrba z elektriko in vodo, ravnanje z odplakami, saniranje okolja,235.5,234.9,236.5,262.0,253.7,249.3,250.3,272.6,264.3,224.2
+....od tega: Socialni prispevki delodajalcev C Predelovalne dejavnosti,207.0,205.8,208.0,230.8,224.3,219.7,220.6,240.2,233.2,192.4
+..Socialni prispevki delodajalcev F Gradbeništvo,35.4,38.9,40.6,42.7,41.5,45.3,46.9,48.3,44.1,44.9
+..Socialni prispevki delodajalcev GHI Trgovina in popravila vozil, promet in skladišèenje, gostinstvo,154.2,159.1,157.9,171.8,168.6,171.3,170.5,181.8,172.2,147.2
+..Socialni prispevki delodajalcev J Informacijske in komunikacijske dejavnosti,32.1,32.5,33.3,36.2,35.4,35.5,36.3,39.5,38.2,37.5
+..Socialni prispevki delodajalcev K Finanène in zavarovalniške dejavnosti,30.2,29.7,28.4,31.7,31.2,30.2,29.7,32.7,31.6,30.6
+..Socialni prispevki delodajalcev L Poslovanje z nepremièninami,3.5,3.6,3.6,3.9,3.8,3.9,3.9,4.2,4.0,4.0
+..Socialni prispevki delodajalcev MN Strokovne, znanstvene, tehniène dejavnosti in druge raznovrstne poslovne dejavnosti,66.1,66.6,66.9,71.7,69.8,69.9,71.1,75.9,73.1,61.1
+..Socialni prispevki delodajalcev OPQ Uprava in obramba, izobraževanje, zdravstvo in socialno varstvo,202.3,203.7,201.4,204.2,216.7,219.5,218.8,226.1,228.9,246.8
+..Socialni prispevki delodajalcev RST Druge storitvene dejavnosti,17.5,18.0,17.9,18.6,19.0,19.5,19.8,21.1,19.4,16.4
+Davki na proizvodnjo in uvoz,1481.2,1621.9,1702.0,1687.8,1491.0,1651.5,1770.4,1779.6,1360.8,1407.6
+Minus: subvencije na proizvodnjo,216.3,138.9,96.2,153.2,215.7,147.6,99.2,168.1,385.0,988.2
+Bruto poslovni presežek/raznovrstni dohodek,3926.3,4064.0,4701.7,4465.2,4166.2,4160.8,4867.0,4553.1,4225.3,4125.4
+Bruto domaèi proizvod,10575.8,11517.6,11835.1,11934.2,11252.0,12189.9,12488.9,12461.7,11269.5,10827.6
