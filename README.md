@@ -11,6 +11,13 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2020/21
 
 V svojem projektu bom analiziral vpliv COVIDA-19 na domače in tuje gospodarstvo. V Sloveniji se bom osredotočil na dohodkovno strukturo BDP-a, v primerjavi s svetom pa bom ločil potrošnjo gospodinjstev in potrošnjo države, ki sta po mojem mnenju eni izmed najboljših pokazateljic sprememb gospodarstva glede na trenutne razmere. Posamezne podatke bom primerjal po kvartalih, saj tako lahko še bolj natančno ocenimo razlike, kot če bi jih primerjal samo po letih, poleg tega pa gledamo še bolj sveže podatke. Na koncu bom razlike v gospodarstvu primerjal še s prisotnostjo virusa v posamezni državi in s populacijo te države, ter tako analiziral katere države je najhuje prizadelo, ne glede na njihovo velikost, in kako hudo je prizadelo nas v primerjavi z ostalimi.
 
+### Okviren plan dela 
+
+1. Po uvozu vseh podatkov se bom najprej posvetil dohodkovni strukturi Slovenije, glede na zadnja tri leta (po kvartalih).
+2. Nato se bom lotil primerjave držav, prvo po potrošnji gospodinjstev, nato pa še po potrošnji države.
+3. Potem bom primerjal še države po BDP, zraven pa dodal še podatke iz 2. in 3. tabele. Na koncu bom iz vseh zbranih podatkov sestavil novo tabelo, v katero bom vključil še populacijo in okuženost posamezne države.
+4. Na koncu bom še s pomočjo zemljevida (že vgrajenega v R) prikazal rezultate. Zemljevid bo podan v interaktivni obliki.
+
 ### Tabele
 
 - Tabela 1: **Primerjava v Sloveniji glede na dohodkovno strukturo**: Posamezne panoge (kmetijstvo, gradbeništvo...) glede na posamezne kvartale (2018-2020)  
@@ -23,6 +30,9 @@ V svojem projektu bom analiziral vpliv COVIDA-19 na domače in tuje gospodarstvo
 - Eurostat( https://ec.europa.eu/eurostat/databrowser/view/teina010/default/table?lang=en, https://ec.europa.eu/eurostat/databrowser/view/teina020/default/table?lang=en, https://ec.europa.eu/eurostat/databrowser/view/teina030/default/table?lang=en)
 - SiStat( https://pxweb.stat.si/SiStatData/pxweb/sl/Data/-/0300240S.px/table/tableViewLayout2/)
 - https://www.worldometers.info/coronavirus/?utm_campaign=homeAdvegas1?%22%20%5Cl%20%22countries
+
+
+Podatke iz SiStata bom uvozil v obliki csv, vse ostale podatke pa bom naložil preko html.
 
 ## Program
 
