@@ -34,7 +34,7 @@ uvozi <- function(ime_datoteke) {
   tabela$TIMEPERIOD <- eksel$TIME
   tabela$TIMEPERIOD[tabela$TIMEPERIOD == "Germany (until 1990 former territory of the FRG)"] <- iconv("Germany")
   tabela$TIMEPERIOD[tabela$TIMEPERIOD == "European Union - 27 countries (from 2020)"] <- iconv("European Union")
-  tabela <- tabel[,c(9,10,15)]
+  tabela <- tabela[,-c(9,10,15)]
   return(tabela)
 }
 
