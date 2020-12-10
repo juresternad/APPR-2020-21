@@ -24,7 +24,7 @@ source("lib/rstudio.r", encoding="UTF-8")
 
 # Izbira teme
 
-Za vzorec bomo prikazali nekaj podatkov o slovenskih občinah.
+Za temo sem si izbral povezavo med gospodarstvom drzav Evrope in COVID-om 
 
 ![](slike/grb.png)
 
@@ -36,32 +36,50 @@ Za vzorec bomo prikazali nekaj podatkov o slovenskih občinah.
 source("uvoz/uvoz.r", encoding="UTF-8")
 ```
 
-Uvozili smo podatke o občinah v obliki CSV s statističnega urada ter v obliki HTML
-z Wikipedije. Podatke imamo v dveh razpredelnicah v obliki *tidy data*.
+Prvo sem uvozil iz surs-sa preko CSV formata naložil podatke o dohodkovni strukturi. Nato sem sestavil tabelo
+v obliki *tidy data* .
 
-1. `druzine` - podatki o družinah za vsako občino
-  - `obcina` - spremenljivka: ime občine (neurejen faktor),
-  - `velikost.druzine` - spremenljivka: število otrok v družini (število: 1, 2, 3 ali 4, kjer zadnja vrednost pomeni 4 ali več),
-  - `stevilo.druzin` - meritev: število družin z ustreznim številom otrok v ustrezni občini (število).
+1. Tabela: `slovenija` - podatki o posameznih panogah
+  - `Panoge` - spremenljivka: vrsta panoge,
+  - `Kvartal` - spremenljivka: kateri kvartal,
+  - `Vrednost` - meritev:  vrednost posamezne panoge v določenem kvartalu.
+  - `rast_iz_2018_na_2019` - meritev: izračunana povprečna rast prvih treh kvartalov iz let 2018 na 2019,
+  - `rast_iz_2019_na_2020` - meritev: izračunana povprečna rast prvih treh kvartalov iz let 2019 na 2020.
+  
+Potem sem uvozil še tabele iz eurostat-a, prav tako v obliki CSV. Sestavil sem tri podobne table (v obliki *tidy data* ), 
+v katerih so zbrani podatki o potrošnji gospodinjstev, državnih izdatkih in bdp-u posamezne države.
 
-2. `obcine` - podatki o občinah
-  - `obcina` - spremenljivka: ime občine (neurejen faktor),
-  - `povrsina` - meritev: površina občine v km$^2$ (število),
-  - `prebivalci` - meritev: prebivalstvo občine (število),
-  - `gostota` - meritev: število prebivalcev na km$^2$ (število),
-  - `naselja` - meritev: število naselij v občini (število),
-  - `ustanovitev` - meritev: leto ustanovitve občine (število),
-  - `pokrajina` - meritev: pokrajina, ki ji občina pripada (neurejen faktor),
-  - `regija` - meritev: regija, ki ji občina pripada (neurejen faktor),
-  - `odcepitev` - meritev: podatki o občinah, od katerih se je občina odcepila (besedilo).
+2. (3., 4.) Tabela: `potrosnja`, `drzava`, `bdp` - podatki o potrošnji gospodinjstev, državnih izdatkih in bdp-u
+  - `Drzave` - spremenljivka: drzava,
+  - `Kvartal` - spremenljivka: kateri kvartal,
+  - `vrednost` - meritev:  vrednost opazovanega neke države v določenem kvartalu,
+  - `rast_iz_2018_na_2019` - meritev: izračunana povprečna rast prvih treh kvartalov iz let 2018 na 2019,
+  - `rast_iz_2019_na_2020` - meritev: izračunana povprečna rast prvih treh kvartalov iz let 2019 na 2020.
 
-**Opomba**: da bi razpredelnica `obcine` res bila v obliki *tidy data*, bi morali odstraniti stolpec `gostota` (saj je izpeljan iz stolpcev `povrsina` in `prebivalci`), podatke o pokrajinah pa bi morali premakniti v drugo razpredelnico, saj nekatere občine pripadajo dvema pokrajinama. Podobno bi morali narediti tudi s stolpcem `odcepitev`.
+Na koncu sem še iz https://www.worldometers.info/coronavirus/?utm_campaign=homeAdvegas1?%22%20%5Cl%20%22countries
+v obliki hmtl uvozil podatke o okuzbah in populaciji posamezne države, ter sestavil novo tabelo (v obliki *tidy data*),
+ki prikazuje podatke o bdp posamezne države, o populaciji, ter o številu zableženih okužb in številu zabeleženih
+okužb na sto tisoč prebivalcev
 
-Spodnji graf prikazuje porazdelitev števila naselij v občinah.
+5. Tabela: `zdruzeni`
+  - `Drzave` - spremenljivka: drzava,
+  - `Stevilo_zabelezenih_okuzb` - meritev: prikazuje koliko okužb je bilo do zdaj zabeleženih,
+  - `Populacija` - meritev: populacija države
+  - `Stevilo_zabelezenih_okuzb_na_sto_tisoč_prebivalcev` - meritev: izračunano število okužb na 10000 prebivalcev, zaokroženo,
+  - `Kvartal` - spremenljivka: kateri kvartal,
+  - `vrednost` - meritev:  vrednost opazovanega neke države v določenem kvartalu.
+  - `rast_iz_2018_na_2019` - meritev: izračunana povprečna rast prvih treh kvartalov iz let 2018 na 2019,
+  - `rast_iz_2019_na_2020` - meritev: izračunana povprečna rast prvih treh kvartalov iz let 2019 na 2020.
 
-```{r histogram, fig.align='center', fig.cap='Histogram števila naselij v občinah'}
-ggplot(obcine, aes(x=naselja)) + geom_histogram() +
-  ggtitle("Pogostost števila naselij") + xlab("Število naselij") + ylab("Število občin")
+Spodnji graf prikazuje rast bdp iz 2019 na 2020 (rdeče pike) in rast iz 2018 na 2019 (modre pike) v procentih.
+
+```{r point, fig.align='center', fig.cap='Graf rasti bdp na drzave'}
+bdp %>% ggplot() + 
+  geom_point(aes(y = Drzave, x = rast_iz_2018_na_2019), color = "blue") +
+  geom_point(aes(y = Drzave, x = rast_iz_2019_na_2020), color = "red") +
+  ylab('Drzave') +
+  xlab('Rast bdp')
+ggtitle("Sprememba rasti bdp")
 ```
 
 ***
