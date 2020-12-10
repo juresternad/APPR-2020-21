@@ -140,9 +140,3 @@ potrosnja <- uvozi("potrosnja")
 zdruzeni <- inner_join(bdp,okuzbe)
 zdruzeni <- zdruzeni[,c(1,6,7,8,2,3,4,5)]
 
-bdp %>% ggplot() + 
-  geom_point(aes(y = Drzave, x = rast_iz_2018_na_2019), color = "blue") +
-  geom_point(aes(y = Drzave, x = rast_iz_2019_na_2020), color = "red") +
-  ylab('Drzave') +
-  xlab('Rast bdp')
-ggtitle("Sprememba rasti bdp")
