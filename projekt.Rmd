@@ -27,8 +27,6 @@ source("lib/rstudio.r", encoding="UTF-8")
 Za temo sem si izbral analizo gospodarstva držav Evrope in povezavo s COVID-om. Podrobneje bom analiziral gibanje posameznih panog v Sloveniji po dohodkovni strukturi in gibanje BDP, potrošnje gospodinjstev in državnih izdatkov posameznih držav Evrope.
 Za celotno analizo bom uporabljal podatke prvih treh kvartalov let 2018, 2019 in 2020. Primerjal bom rasti oz. padce posameznih držav in skušal najti povezavo z okuženostjo. 
 
-![](slike/grb.png)
-
 ***
 
 # Obdelava, uvoz in čiščenje podatkov
