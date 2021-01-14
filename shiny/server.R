@@ -1,24 +1,26 @@
 library(shiny)
 
-shinyServer(function(input, output) {
-  output$druzine <- DT::renderDataTable({
-    druzine %>% pivot_wider(names_from="velikost.druzine", values_from="stevilo.druzin") %>%
-      rename(`Občina`=obcina)
+shinyServer(function(input, output, session) {
+  output$grafdrzav <- renderPlot({
+    podatki1 <- zdruzeni %>% filter(Drzave==input$drzave)
+    ggplot(podatki1, aes(x=Kvartal, y=Vrednost*1000000/Populacija, col=Drzave))+
+      geom_point()+geom_line() + facet_wrap(facets = vars(Leto))+
+      scale_x_continuous(breaks =c(1,2,3),labels=c("1.", "2.", "3."))+
+      ylab('Vrednost BDP na prebivalca')
   })
-  
-  output$pokrajine <- renderUI(
-    selectInput("pokrajina", label="Izberi pokrajino",
-                choices=c("Vse", levels(obcine$pokrajina)))
-  )
-  output$naselja <- renderPlot({
-    main <- "Pogostost števila naselij"
-    if (!is.null(input$pokrajina) && input$pokrajina %in% levels(obcine$pokrajina)) {
-      t <- obcine %>% filter(pokrajina == input$pokrajina)
-      main <- paste(main, "v regiji", input$pokrajina)
-    } else {
-      t <- obcine
-    }
-    ggplot(t, aes(x=naselja)) + geom_histogram() +
-      ggtitle(main) + xlab("Število naselij") + ylab("Število občin")
+  output$grafpotrosnja <- renderPlot({
+    podatki1 <- potrosnja %>% filter(Drzave==input$drzave)
+    ggplot(podatki1, aes(x=Kvartal, y=Vrednost, col=Drzave))+
+      geom_point()+geom_line() + facet_wrap(facets = vars(Leto))+
+      scale_x_continuous(breaks =c(1,2,3),labels=c("1.", "2.", "3."))+
+      ylab('Vrednost potrošnje gospodinjstev')
+  })
+  output$grafdrzava <- renderPlot({
+    podatki1 <- drzava %>% filter(Drzave==input$drzave)
+    ggplot(podatki1, aes(x=Kvartal, y=Vrednost, col=Drzave))+
+      geom_point()+geom_line() + facet_wrap(facets = vars(Leto))+
+      scale_x_continuous(breaks =c(1,2,3),labels=c("1.", "2.", "3."))+
+      ylab('Vrednost državnih izdatkov')
   })
 })
+

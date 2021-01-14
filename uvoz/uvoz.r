@@ -58,8 +58,7 @@ druzine <- uvozi.druzine(levels(obcine$obcina))
 #uvoz podatkov za Slovenijo
 uvozi.slovenija <- function() {
   tabela <- read_csv2("podatki/slovenija.csv", locale=locale(encoding="Windows-1250"),skip=1)
-  colnames(tabela) <- c("Panoge","Q1_2018","Q2_2018","Q3_2018","Q1_2019",
-                        "Q2_2019","Q3_2019","Q1_2020","Q2_2020","Q3_2020")
+  tabela <- rename(tabela,c("TRANSAKCIJE" = "Panoge"))
   tabela <- tabela[c(1:12),]
   tabela <-tabela[-c(4),]
   tabela$Panoge <- c("Vse","Kmetijstvo, lov, gozdarstvo, ribištvo","Rudarstvo, predelovalne dejavnosti, elektrika, voda",
@@ -67,14 +66,10 @@ uvozi.slovenija <- function() {
                      "Informacijske in komunikacijske dejavnosti", "Finančne in zavarovalniške dejavnosti",
                      "Poslovanje z nepremičninami","Strokovne, znanstvene, tehnične dejavnosti, poslovne dejavnosti",
                      "Uprava in obramba, izobraževanje, zdravstvo in socialno varstvo","Druge storitvene dejavnosti")
-  tabela$rast_iz_2018_na_2019_ <- round(100*((tabela$Q1_2019-tabela$Q1_2018)/tabela$Q1_2018 +
-                                               (tabela$Q2_2019-tabela$Q2_2018)/tabela$Q2_2018 +(tabela$Q3_2019-tabela$Q3_2018)/tabela$Q3_2018)/3,2)
-  tabela$rast_iz_2019_na_2020 <- round(100*((tabela$Q1_2020-tabela$Q1_2019)/tabela$Q1_2019 +
-                                              (tabela$Q2_2020-tabela$Q2_2019)/tabela$Q2_2019 +(tabela$Q3_2020-tabela$Q3_2019)/tabela$Q3_2019)/3,2)
-  prva_tabela <- tabela[,-c(11,12)] %>% pivot_longer(!Panoge, names_to="Kvartal", values_to="Stevilo")
-  prva_tabela$Stevilo <- as.numeric(prva_tabela$Stevilo)
-  tabela <- inner_join(prva_tabela,tabela[,c(1,11,12)])
-  return(tabela)
+  prva_tabela <- tabela %>% pivot_longer(!Panoge, names_to="Kvartal", values_to="Stevilo") %>%
+    separate(Kvartal, c("Leto", "Kvartal"), sep="Q") %>%
+    mutate(Leto=parse_number(Leto), Kvartal=parse_number(Kvartal))
+  return(prva_tabela)
 }
 
 slovenija <- uvozi.slovenija()
@@ -106,26 +101,33 @@ eksel <- eksel[-c(1,36,37,38,39,40,41), ]
 
 #funkcija za uvazanje podatkov iz eurostat-a
 uvozi <- function(ime_datoteke) {
-  ime <- paste0("podatki/",ime_datoteke,".csv")
+  ime <- paste0("podatki/",ime_datoteke,".csv") 
   tabela <- read_csv(ime, locale=locale(encoding="Windows-1250"), na = c(":"))
-  tabela$TIMEPERIOD <- eksel$TIME
-  tabela$TIMEPERIOD[tabela$TIMEPERIOD == "Germany (until 1990 former territory of the FRG)"] <- iconv("Germany")
-  tabela$TIMEPERIOD[tabela$TIMEPERIOD == "European Union - 27 countries (from 2020)"] <- iconv("European Union")
-  tabela <- tabela[-c(9,10,15),]
-  stolpci <- c("Drzave", "Q4_2017","Q1_2018","Q2_2018","Q3_2018","Q4_2018",
-               "Q1_2019","Q2_2019","Q3_2019","Q4_2019","Q1_2020","Q2_2020",
+  tabela <- rename(tabela,c("TIMEPERIOD" = "Drzave"))
+  tabela$Drzave <- eksel$TIME
+  tabela$Drzave[tabela$Drzave == "Germany (until 1990 former territory of the FRG)"] <- iconv("Germany")
+  tabela$Drzave[tabela$Drzave == "European Union - 27 countries (from 2020)"] <- iconv("European Union")
+  tabela <- tabela[-c(9,10,15),-c(2,6,10)]
+  stolpci <- c("Drzave","Q1_2018","Q2_2018","Q3_2018",
+               "Q1_2019","Q2_2019","Q3_2019","Q1_2020","Q2_2020",
                "Q3_2020")
+  orstolpci <- colnames(tabela)
   colnames(tabela) <- stolpci
+  orstolpci <- append(orstolpci,"rast_iz_2018_na_2019")
+  orstolpci <- append(orstolpci,"rast_iz_2019_na_2020")
   tabela <- tabela %>% pivot_longer(!Drzave, names_to="Kvartal", values_to="Stevilo")
   tabela$Stevilo <- str_extract(tabela$Stevilo, "\\d+\\.*\\d*")
   tabela$Stevilo <- as.numeric(tabela$Stevilo)
-  tabela <- tabela %>% pivot_wider(!Kvartal, names_from="Kvartal",values_from="Stevilo")
+  tabela <- tabela %>% pivot_wider(!Kvartal, names_from="Kvartal",values_from="Stevilo") 
   tabela$rast_iz_2018_na_2019 <- round(100*((tabela$Q1_2019-tabela$Q1_2018)/tabela$Q1_2018 +
                                               (tabela$Q2_2019-tabela$Q2_2018)/tabela$Q2_2018 +(tabela$Q3_2019-tabela$Q3_2018)/tabela$Q3_2018)/3,2)
   tabela$rast_iz_2019_na_2020 <- round(100*((tabela$Q1_2020-tabela$Q1_2019)/tabela$Q1_2019 +
                                               (tabela$Q2_2020-tabela$Q2_2019)/tabela$Q2_2019 +(tabela$Q3_2020-tabela$Q3_2019)/tabela$Q3_2019)/3,2)
-  prva_tabela <- tabela[,-c(14,15)] %>% pivot_longer(!Drzave, names_to="Kvartal", values_to="Vrednost")
-  druga_tabela <- tabela[,c(1,14,15)]
+  colnames(tabela) <-  orstolpci
+  prva_tabela <- tabela[,-c(11,12)] %>% pivot_longer(!Drzave, names_to="Kvartal", values_to="Vrednost")%>%
+    separate(Kvartal, c("Leto", "Kvartal"), sep="Q") %>%
+    mutate(Leto=parse_number(Leto), Kvartal=parse_number(Kvartal))
+  druga_tabela <- tabela[,c(1,11,12)]
   tabela <- inner_join(prva_tabela,druga_tabela)
   return(tabela)
 }
@@ -135,8 +137,9 @@ drzava <- uvozi("drzava")
 bdp <- uvozi("bdp")
 potrosnja <- uvozi("potrosnja")
 
-
 #Združena tabela za bdp in okuzbe
 zdruzeni <- inner_join(bdp,okuzbe)
-zdruzeni <- zdruzeni[,c(1,6,7,8,2,3,4,5)]
+
+
+
 

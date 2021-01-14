@@ -24,7 +24,8 @@ source("lib/rstudio.r", encoding="UTF-8")
 
 # Izbira teme
 
-Za temo sem si izbral povezavo med gospodarstvom drzav Evrope in COVID-om 
+Za temo sem si izbral analizo gospodarstva držav Evrope in povezavo s COVID-om. Podrobneje bom analiziral gibanje posameznih panog v Sloveniji po dohodkovni strukturi in gibanje BDP, potrošnje gospodinjstev in državnih izdatkov posameznih držav Evrope.
+Za celotno analizo bom uporabljal podatke prvih treh kvartalov let 2018, 2019 in 2020. Primerjal bom rasti oz. padce posameznih držav in skušal najti povezavo z okuženostjo. 
 
 ![](slike/grb.png)
 
@@ -36,7 +37,7 @@ Za temo sem si izbral povezavo med gospodarstvom drzav Evrope in COVID-om
 source("uvoz/uvoz.r", encoding="UTF-8")
 ```
 
-Prvo sem uvozil iz surs-sa preko CSV formata naložil podatke o dohodkovni strukturi. Nato sem sestavil tabelo
+Prvo sem iz surs-sa preko CSV formata naložil podatke o dohodkovni strukturi. Nato sem sestavil tabelo
 v obliki *tidy data* .
 
 1. Tabela: `slovenija` - podatki o posameznih panogah
@@ -71,16 +72,8 @@ okužb na sto tisoč prebivalcev
   - `rast_iz_2018_na_2019` - meritev: izračunana povprečna rast prvih treh kvartalov iz let 2018 na 2019,
   - `rast_iz_2019_na_2020` - meritev: izračunana povprečna rast prvih treh kvartalov iz let 2019 na 2020.
 
-Spodnji graf prikazuje rast bdp iz 2019 na 2020 (rdeče pike) in rast iz 2018 na 2019 (modre pike) v procentih.
 
-```{r point, fig.align='center', fig.cap='Graf rasti bdp na drzave'}
-bdp %>% ggplot() + 
-  geom_point(aes(y = Drzave, x = rast_iz_2018_na_2019), color = "blue") +
-  geom_point(aes(y = Drzave, x = rast_iz_2019_na_2020), color = "red") +
-  ylab('Drzave') +
-  xlab('Rast bdp')
-ggtitle("Sprememba rasti bdp")
-```
+
 
 ***
 
@@ -90,36 +83,68 @@ ggtitle("Sprememba rasti bdp")
 source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 ```
 
-Spodnji zemljevid prikazuje povprečno velikost družine za vsako občino.
+Spodnja dva grafa prikazujeta gibanje sredstev za zaposlene za posamezno panogo v zadnjih treh letih za prve tri kvartale. Prvi graf prikazuje gibanje panog, ki dosegajo do 5 milijard evrov, drugi pa gibanje tistih, ki dosegajo nad 5 milijard evrov.
+Vidi se, da so panoge v katerih je več sredstev za zaposlene bile v letu 2020 bolj prizadete od tistih v katerih je manj sredstev, z izjemo panoge, ki vključuje upravo, obrambo, izobraževanje, zdravstve in socialno varstvo, ki je celo zelo narasla. Med panogami, v katerih je manj sredstev za zaposlene pa so vidno padec doživele le druge storitvene dejavnosti.
 
-```{r zemljevid, fig.align='center', fig.cap='Zemljevid povprečnega števila otrok v družini'}
-tm_shape(merge(zemljevid, povprecja, by.x="OB_UIME", by.y="obcina")) +
-  tm_polygons("povprecje", title="Povprečje") +
-  tm_layout(title="Povprečno število otrok v družini")
+
+
+
+```{r grafi1, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide'}
+print(graf4)
+print(graf5)
 ```
+
+
+Spodnji grafi prikazujejo sestavo BDP prvih treh kvartalov posamezne države za vsakega od zadnjih treh let. V grafih je vidno kakšen delež BDP-a predstavljata potrošnja gospodinjstev in državni izdatki. Ostale komponente BDP-a kot so investicije, uvoz, izvoz... pa v grafu niso prikazani, saj jih tudi nisem vključil v samo analizo. Za manjša odstopanja in boljši prikaz razvitosti držav so podatki vsake od držav prilagojeni številu prebivalcev te države in urejeni po velikosti. 
+
+```{r grafi2, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide'}
+print(graf18)
+print(graf19)
+print(graf20)
+```
+Iz podatkov se vidi, da je vsa tri leta največji BDP beležil Luksemburg, za njim pa Švica. Vsako leto so jima v nekonstantnem vrstnem redu sledile so Norveška, Irska, Danska in Nizozemska. Zanimivo je, da je bila Slovenija vsa leta na 16. mestu od 29 držav. Prav tako je vsa tri leta ostal enak zadek, ki ga po vrsti od zadaj sestavljajo Srbija, Bulgarija, Romunija, Hrvaška; poljska, Madžarska in Latvija.
+
+\n
+\n
+
+Spodnji graf prikazuje kakšna je bila relativna rast BDP prvih treh kvartalov iz leta 2018 na 2019 in iz 2019 na 2020. 
+Opazi se, da je bila rast iz 2019 na 2020 v večini držav negativna, z izjemo Irske (skoraj 5 %), Srbije (okoli 2 %) in Švice (okoli 1 %). Največji padec je imela Norveška, ki pa je edina od spodnjih držav že iz leta 2018 na 2019 imela negativno rast. Zelo negativno rast so prav tako imele Španija, Grčija in Hrvaška. Slovenija je imela iz 2018 na 2019 okoli 5 % rast, iz 2019 na 2020 pa okoli -5 % rast, kar je blizu povprečja.
+```{r grafi4, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide'}
+print(grafee)
+```
+Graf prikazuje gostoti rasti BDP prvih treh kvartalov iz 2018 na 2019 in 2019 na 2020. Opazi se, da so bile razlike v rasteh držav iz 2018 na 2019 manjše kot iz 2019 na 2020. Gostota rasti iz 2018 na 2019 je bila največja pri 5 %, iz 2019 na 2020 pa pri -5 %.
+```{r grafi6, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide'}
+print(grafp)
+```
+Spodnja simulacija prikazuje BDP na prebivalca posamezne države za prve tri kvartale let 2018, 2019 in 2020. V simulaciji je možno primerjati več držav.
+
+```{r shiny, echo=FALSE}
+shinyAppDir("shiny", options=list(width="100%", height=500))
+```
+
+Kot se vidi v simulaciji in spodnjih grafih je pri vseh državah drugi kvartal imel največji padec, v večini pa v manjši meri tudi tretji. V spodnjih grafih so že narejene skupine držav, ki dosegajo podoben BDP, zato da je lahko prikaz boljši.
+
+```{r grafi3, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide'}
+print(graftri)
+print(grafstiri)
+print(grafpet)
+print(grafsest)
+print(grafdve)
+```
+
+Spodnji zemljevid prikazuje rast BDP iz leta 2018 na 2019 in okuženost posamezne države. Rast je deljena na 6 kategorij (od -13.62 do 4.48 %), okuženost pa na 5 kategorij (od 1000 do 5000 zabeleženih okužb na sto tisoč prebivalcev). Obarvanost posamezne države prikazuje rast, kjer rdeča prikazuje najnižjo rast, zelena pa najvišjo, velikost mehurčkov prikazuje okuženost posamezne države.
+Iz samega zemljevida ni jasno opaziti kakšne povezave med številom zabeleženih okužb in rastjo BDP-a.
+
+```{r zemljevid1, echo=FALSE, fig.align='center', fig.cap='Zemljevid rasti BDP iz 2019 na 2020 in okuženost posameznih držav', message=FALSE, warning=FALSE, results='hide',fig.width = 12, fig.height = 12}
+tm_shape(merge(zemljevid,
+               kt %>% group_by(Drzave),
+               by.x="SOVEREIGNT", by.y="Drzave"),xlim=c(-25,32), ylim=c(32,72))+
+  tm_polygons("rast_iz_2019_na_2020",palette = "RdYlGn", n=6,style = "equal") +
+  tm_bubbles(size = "Stevilo_okuzb_na_sto_tisoc_prebivalcev", scale=2.5,style="kmeans", col = "red", size.lim=c(60,4200)) +
+  tm_layout(main.title = "Zemljevid okuženosti in rasti BDP-a iz 2019 na 2020")
+```
+
+
 
 ***
 
-# Napredna analiza podatkov
-
-```{r analiza}
-source("analiza/analiza.r", encoding="UTF-8")
-```
-
-Spodnji graf prikazuje povezavo med številom naselij in površino občine.
-
-```{r graf, fig.align='center', fig.cap='Povezava med številom naselij in površino občine'}
-ggplot(inner_join(obcine, data.frame(obcina=names(skupine),
-                                     skupina=factor(skupine)), by="obcina")
-, aes(x=povrsina, y=naselja, color=skupina, size=prebivalci/1000)) + geom_point() +
-  ggtitle("Število naselij glede na površino občine") +
-  xlab(expression("Površina (km"^2 * ")")) + ylab("Št. naselij") +
-  guides(color=guide_legend(title="Skupina"),
-         size=guide_legend(title="Prebivalci (* 1000)"))
-```
-
-***
-
-```{r shiny}
-shinyAppDir("shiny", options=list(width="100%", height=600))
-```
