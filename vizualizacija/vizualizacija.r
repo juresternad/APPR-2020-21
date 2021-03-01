@@ -12,17 +12,18 @@ slovenijabeta <- slovenija[-c(grep("Finančne in zavarovalniške dejavnosti|
                                   |Poslovanje z nepremičninami|Gradbeništvo|
                                   |Kmetijstvo, lov, gozdarstvo, ribištvo|Vse", slovenija$Panoge)),]
 
-graf1 <- ggplot(data=slovenijaalfa, aes(x=Kvartal, y=Stevilo, col=Panoge))+
-  geom_point()+geom_line() + ylab('Sredstva za zaposlene v mio €') + facet_wrap(facets = vars(Leto)) +
-  scale_x_continuous(breaks =c(1,2,3),labels=c("1.", "2.", "3.")) +
-  scale_colour_discrete(labels = function(x) str_wrap(x, width = 40, )) +
-  ggtitle("Panoge s sredstvi do 5 milijard €")
-
-graf2 <- ggplot(data=slovenijabeta, aes(x=Kvartal, y=Stevilo, col=Panoge))+
+graf1 <- ggplot(data=slovenijaalfa, aes(x=Kvartal, y=Stevilo, color=str_wrap(Panoge,20)))+
   geom_point()+geom_line() + ylab('Sredstva za zaposlene v mio €') + facet_wrap(facets = vars(Leto)) + 
-  scale_x_continuous(breaks =c(1,2,3),labels=c("1.", "2.", "3.")) + 
-  scale_colour_discrete(labels = function(x) str_wrap(x, width = 40, )) + 
-  ggtitle("Panoge s sredstvi nad 5 milijard €")
+  scale_x_continuous(breaks =c(1,2,3),labels=c("1.", "2.", "3."))  + 
+  theme(legend.key.height=unit(1.5, "cm"))+ labs(colour="Panoga")
+ggtitle("Panoge s sredstvi nad 5 milijard €")
+
+
+graf2 <- ggplot(data=slovenijabeta, aes(x=Kvartal, y=Stevilo, color=str_wrap(Panoge,20)))+
+  geom_point()+geom_line() + ylab('Sredstva za zaposlene v mio €') + facet_wrap(facets = vars(Leto)) + 
+  scale_x_continuous(breaks =c(1,2,3),labels=c("1.", "2.", "3."))  + 
+  theme(legend.key.height=unit(2, "cm"))+ labs(colour="Panoga")
+ggtitle("Panoge s sredstvi nad 5 milijard €")
 
 ###grafi za BDP na prebivalca###################################################
 
@@ -189,22 +190,31 @@ graf4.3 <- ggplot(data=tabela20, aes(x=reorder(Drzave,Vrednost),y=Vrednost, fill
   scale_fill_discrete(name = "",labels = c("BDP", "Državni izdatki", "Potrošnja gospodinjstev"))
 
 ###graf za rasti BDP############################################################
-bdp1 <- bdp %>% mutate(Drzave=slovar[Drzave])
+Imena <- c("rast_iz_2018_na_2019" = "Rast iz 2018 na 2019",
+           "rast_iz_2019_na_2020" = "Rast iz 2019 na 2020")
 
-graf5 <- ggplot(data = bdp1, aes(y = Drzave)) +
+bdp12 <- bdp %>% mutate(Drzave=slovar[Drzave])
+#bdp12 <- bdp12 %>% mutate(Rast=Imena[Rast])
+
+graf5 <- ggplot(data = bdp12, aes(y = Drzave)) +
   geom_point(aes(x = rast_iz_2019_na_2020, color = "rast_iz_2019_na_2020")) +
   geom_point(aes(x = rast_iz_2018_na_2019, color = "rast_iz_2018_na_2019")) +
   ylab('') +
   xlab('Rast BDP v %')+
   geom_vline(xintercept = 0,size=0.1, col="grey") +
   ggtitle("Rast BDP")+
-  scale_colour_discrete("Rast")
+  scale_color_discrete(name = "Rast",
+                       labels = c(rast_iz_2018_na_2019 = "Rast iz 2018 na 2019",
+                                  rast_iz_2019_na_2020 = "Rast iz 2019 na 2020"))
 
 ###graf za gostoto##############################################################
+
+
 
 rt <- bdp[,c(1,5,6)]
 rt <- rt[!duplicated(rt$rast_iz_2018_na_2019),]
 rt <- rt %>% pivot_longer(!Drzave, names_to="Rast", values_to="vr")
+rt <- rt %>% mutate(Rast=Imena[Rast])
 
 graf6 <-  ggplot(data=rt, aes(x=vr,color=Rast,fill=Rast))+
   geom_density(alpha=0.4,) + ylab('Gostota') + xlab('Rast BDP v %') + ggtitle('Gostota rasti BDP')+
@@ -223,12 +233,14 @@ graf6 <-  ggplot(data=rt, aes(x=vr,color=Rast,fill=Rast))+
   kt <- kt[!duplicated(kt$rast_iz_2019_na_2020),]
   kt$`Drzave`[kt$`Drzave` == "Serbia"] <- iconv("Republic of Serbia")
   kt[13,3] <- NaN
+  colnames(kt)[3] <- "Okužbe"
   
   zemljevid1 <- tm_shape(merge(zemljevid,
                                kt %>% group_by(Drzave),
                                by.x="SOVEREIGNT", by.y="Drzave"),xlim=c(-25,32), ylim=c(32,72))+
-    tm_polygons("rast_iz_2019_na_2020",palette = "RdYlGn", n=8,style = "equal") +
-    tm_bubbles(size = "Stevilo_okuzb_na_sto_tisoc_prebivalcev", scale=2.5,style="kmeans", col = "red", size.lim=c(60,4200)) +
+    tm_polygons("rast_iz_2019_na_2020",palette = "RdYlGn", n=8,style = "equal",title = "Rast iz 2019 na 2020") +
+    tm_bubbles(size = "Okužbe", scale=2.5,style="kmeans", col = "red", 
+               size.lim=c(60,4200)) +
     tm_layout(main.title = "Zemljevid okuženosti in rasti BDP iz 2018 na 2019")
   
 
