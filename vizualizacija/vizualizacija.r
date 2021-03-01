@@ -174,38 +174,38 @@ graf4.1 <- ggplot(data=tabela18, aes(x=reorder(Drzave,Vrednost),y=Vrednost, fill
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
   geom_bar(stat="identity") + ylab('Vrednost v mio €') + 
   theme(axis.title.x = element_blank()) + ggtitle('Sestava BDP v letu 2018') +
-  scale_fill_discrete(name = "",labels = c("BDP", "Državni izdatki", "Potrošnja gospodinjstev"))
+  scale_fill_discrete(name = "",labels = c("ostalo", "Državni izdatki", "Potrošnja gospodinjstev"))
   
 
 graf4.2 <- ggplot(data=tabela19, aes(x=reorder(Drzave,Vrednost),y=Vrednost, fill=Kvartal)) +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
   geom_bar(stat="identity") + ylab('Vrednost v mio € ') + 
   theme(axis.title.x = element_blank()) + ggtitle('Sestava BDP v letu 2019') + 
-  scale_fill_discrete(name = "",labels = c("BDP", "Državni izdatki", "Potrošnja gospodinjstev"))
+  scale_fill_discrete(name = "",labels = c("ostalo", "Državni izdatki", "Potrošnja gospodinjstev"))
 
 graf4.3 <- ggplot(data=tabela20, aes(x=reorder(Drzave,Vrednost),y=Vrednost, fill=Kvartal)) +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
   geom_bar(stat="identity") + ylab('Vrednost v mio € ') +
   theme(axis.title.x = element_blank()) + ggtitle('Sestava BDP v letu 2020')+
-  scale_fill_discrete(name = "",labels = c("BDP", "Državni izdatki", "Potrošnja gospodinjstev"))
+  scale_fill_discrete(name = "",labels = c("osatlo", "Državni izdatki", "Potrošnja gospodinjstev"))
 
 ###graf za rasti BDP############################################################
 Imena <- c("rast_iz_2018_na_2019" = "Rast iz 2018 na 2019",
            "rast_iz_2019_na_2020" = "Rast iz 2019 na 2020")
 
 bdp12 <- bdp %>% mutate(Drzave=slovar[Drzave])
-#bdp12 <- bdp12 %>% mutate(Rast=Imena[Rast])
+bdp12 <- bdp12[!duplicated(bdp$rast_iz_2019_na_2020),]
+bdp12 <- bdp12[-c(12),]
+bdp12 <- bdp12[,c(1,5,6)] %>% gather("Rast", "Vrednost", -Drzave)
+bdp12 <- bdp12 %>% mutate(Rast=Imena[Rast])
 
-graf5 <- ggplot(data = bdp12, aes(y = Drzave)) +
-  geom_point(aes(x = rast_iz_2019_na_2020, color = "rast_iz_2019_na_2020")) +
-  geom_point(aes(x = rast_iz_2018_na_2019, color = "rast_iz_2018_na_2019")) +
-  ylab('') +
-  xlab('Rast BDP v %')+
-  geom_vline(xintercept = 0,size=0.1, col="grey") +
-  ggtitle("Rast BDP")+
-  scale_color_discrete(name = "Rast",
-                       labels = c(rast_iz_2018_na_2019 = "Rast iz 2018 na 2019",
-                                  rast_iz_2019_na_2020 = "Rast iz 2019 na 2020"))
+graf5 <- ggplot(data=bdp12,aes(x=reorder(Drzave,Vrednost),y=Vrednost,fill=Rast)) +
+  geom_bar(position="dodge",stat="identity") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  ggtitle("Graf rasti")+
+  ylab('Vrednost v % ')+
+  xlab('')
+  
 
 ###graf za gostoto##############################################################
 

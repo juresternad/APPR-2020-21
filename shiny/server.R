@@ -15,7 +15,7 @@ shinyServer(function(input, output, session) {
   drzava <- drzava %>% mutate(Drzave=slovar[Drzave])
   
   output$grafdrzav <- renderPlot({
-    podatki1 <- zdruzeni %>% filter(Drzave==input$drzave)
+    podatki1 <- zdruzeni %>% filter(Drzave%in%input$drzave)
     ggplot(podatki1, aes(x=Kvartal, y=Vrednost*1000000/Populacija, col=Drzave))+
       geom_point()+geom_line() + facet_wrap(facets = vars(Leto))+
       scale_x_continuous(breaks =c(1,2,3),labels=c("1.", "2.", "3."))+
@@ -23,7 +23,7 @@ shinyServer(function(input, output, session) {
       scale_colour_discrete("Država")
   })
   output$grafpotrosnja <- renderPlot({
-    podatki1 <- potrosnja %>% filter(Drzave==input$drzave)
+    podatki1 <- potrosnja %>% filter(Drzave%in%input$drzave)
     ggplot(podatki1, aes(x=Kvartal, y=Vrednost, col=Drzave))+
       geom_point()+geom_line() + facet_wrap(facets = vars(Leto))+
       scale_x_continuous(breaks =c(1,2,3),labels=c("1.", "2.", "3."))+
@@ -31,7 +31,7 @@ shinyServer(function(input, output, session) {
       scale_colour_discrete("Država")
   })
   output$grafdrzava <- renderPlot({
-    podatki1 <- drzava %>% filter(Drzave==input$drzave)
+    podatki1 <- drzava %>% filter(Drzave%in%input$drzave)
     ggplot(podatki1, aes(x=Kvartal, y=Vrednost, col=Drzave))+
       geom_point()+geom_line() + facet_wrap(facets = vars(Leto))+
       scale_x_continuous(breaks =c(1,2,3),labels=c("1.", "2.", "3."))+
