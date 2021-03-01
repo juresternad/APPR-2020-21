@@ -27,6 +27,9 @@ source("lib/rstudio.r", encoding="UTF-8")
 Za temo sem si izbral analizo gospodarstva držav Evrope in povezavo s COVID-om. Podrobneje bom analiziral gibanje posameznih panog v Sloveniji po dohodkovni strukturi in gibanje BDP, potrošnje gospodinjstev in državnih izdatkov posameznih držav Evrope.
 Za celotno analizo bom uporabljal podatke prvih treh kvartalov let 2018, 2019 in 2020. Primerjal bom rasti oz. padce posameznih držav in skušal najti povezavo z okuženostjo. 
 
+<center>
+![](slike/slika.jpg)
+
 ***
 
 # Obdelava, uvoz in čiščenje podatkov
@@ -35,7 +38,7 @@ Za celotno analizo bom uporabljal podatke prvih treh kvartalov let 2018, 2019 in
 source("uvoz/uvoz.r", encoding="UTF-8")
 ```
 
-Prvo sem iz surs-sa preko CSV formata naložil podatke o dohodkovni strukturi. Nato sem sestavil tabelo
+Najprej sem iz surs-sa preko CSV formata naložil podatke o dohodkovni strukturi. Nato sem sestavil tabelo
 v obliki *tidy data* .
 
 1. Tabela: `slovenija` - podatki o posameznih panogah
@@ -46,7 +49,7 @@ v obliki *tidy data* .
   - `rast_iz_2019_na_2020` - meritev: izračunana povprečna rast prvih treh kvartalov iz let 2019 na 2020.
   
 Potem sem uvozil še tabele iz eurostat-a, prav tako v obliki CSV. Sestavil sem tri podobne table (v obliki *tidy data* ), 
-v katerih so zbrani podatki o potrošnji gospodinjstev, državnih izdatkih in bdp-u posamezne države.
+v katerih so zbrani podatki o potrošnji gospodinjstev, državnih izdatkih in bdp posamezne države.
 
 2. (3., 4.) Tabela: `potrosnja`, `drzava`, `bdp` - podatki o potrošnji gospodinjstev, državnih izdatkih in bdp-u
   - `Drzave` - spremenljivka: drzava,
@@ -82,37 +85,36 @@ source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 ```
 
 Spodnja dva grafa prikazujeta gibanje sredstev za zaposlene za posamezno panogo v zadnjih treh letih za prve tri kvartale. Prvi graf prikazuje gibanje panog, ki dosegajo do 5 milijard evrov, drugi pa gibanje tistih, ki dosegajo nad 5 milijard evrov.
-Vidi se, da so panoge v katerih je več sredstev za zaposlene bile v letu 2020 bolj prizadete od tistih v katerih je manj sredstev, z izjemo panoge, ki vključuje upravo, obrambo, izobraževanje, zdravstve in socialno varstvo, ki je celo zelo narasla. Med panogami, v katerih je manj sredstev za zaposlene pa so vidno padec doživele le druge storitvene dejavnosti.
+Vidi se, da so panoge, v katerih je več sredstev za zaposlene, bile v letu 2020 bolj prizadete od tistih, v katerih je manj sredstev, z izjemo panoge, ki vključuje upravo, obrambo, izobraževanje, zdravstve in socialno varstvo, ki je celo zelo narasla. Med panogami, v katerih je manj sredstev za zaposlene, pa so viden padec doživele le druge storitvene dejavnosti.
 
 
 
 
 ```{r grafi1, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide'}
-print(graf4)
-print(graf5)
+print(graf1)
+print(graf2)
 ```
 
 
-Spodnji grafi prikazujejo sestavo BDP prvih treh kvartalov posamezne države za vsakega od zadnjih treh let. V grafih je vidno kakšen delež BDP-a predstavljata potrošnja gospodinjstev in državni izdatki. Ostale komponente BDP-a kot so investicije, uvoz, izvoz... pa v grafu niso prikazani, saj jih tudi nisem vključil v samo analizo. Za manjša odstopanja in boljši prikaz razvitosti držav so podatki vsake od držav prilagojeni številu prebivalcev te države in urejeni po velikosti. 
+Spodnji graf prikazuje sestavo BDP prvih treh kvartalov posamezne države v letu 2020. Na grafu je vidno, kakšen delež BDP predstavljata potrošnja gospodinjstev in državni izdatki. Ostale komponente BDP, kot so investicije, uvoz, izvoz..., pa v grafu niso prikazane, saj jih tudi nisem vključil v samo analizo. Za manjša odstopanja in boljši prikaz razvitosti držav so podatki vsake od držav prilagojeni številu prebivalcev te države in urejeni po velikosti. V datoteki s prilogami sta tudi sestavi BDP za 2018 in 2019.
 
-```{r grafi2, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide'}
-print(graf18)
-print(graf19)
-print(graf20)
+
+```{r grafi2, echo=FALSE, fig.align='center', fig.show = 'hold',message=FALSE, warning=FALSE, results='hide'}
+print(graf4.3)
 ```
-Iz podatkov se vidi, da je vsa tri leta največji BDP beležil Luksemburg, za njim pa Švica. Vsako leto so jima v nekonstantnem vrstnem redu sledile so Norveška, Irska, Danska in Nizozemska. Zanimivo je, da je bila Slovenija vsa leta na 16. mestu od 29 držav. Prav tako je vsa tri leta ostal enak zadek, ki ga po vrsti od zadaj sestavljajo Srbija, Bulgarija, Romunija, Hrvaška; poljska, Madžarska in Latvija.
+Iz podatkov se vidi, da je največji BDP beležil Luksemburg, za njim pa Švica. Vsako leto so jima v nekonstantnem vrstnem redu sledile so Norveška, Irska, Danska in Nizozemska. Zanimivo je, da je bila Slovenija vsa leta na 16. mestu od 29 držav. Prav tako je vsa tri leta ostal enak zadnji del, ki ga po vrsti od zadaj sestavljajo Srbija, Bolgarija, Romunija, Hrvaška, Poljska, Madžarska in Latvija.
 
 \n
 \n
 
-Spodnji graf prikazuje kakšna je bila relativna rast BDP prvih treh kvartalov iz leta 2018 na 2019 in iz 2019 na 2020. 
+Spodnji graf prikazuje, kakšna je bila relativna rast BDP prvih treh kvartalov iz leta 2018 na 2019 in iz 2019 na 2020. 
 Opazi se, da je bila rast iz 2019 na 2020 v večini držav negativna, z izjemo Irske (skoraj 5 %), Srbije (okoli 2 %) in Švice (okoli 1 %). Največji padec je imela Norveška, ki pa je edina od spodnjih držav že iz leta 2018 na 2019 imela negativno rast. Zelo negativno rast so prav tako imele Španija, Grčija in Hrvaška. Slovenija je imela iz 2018 na 2019 okoli 5 % rast, iz 2019 na 2020 pa okoli -5 % rast, kar je blizu povprečja.
 ```{r grafi4, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide'}
-print(grafee)
+print(graf5)
 ```
 Graf prikazuje gostoti rasti BDP prvih treh kvartalov iz 2018 na 2019 in 2019 na 2020. Opazi se, da so bile razlike v rasteh držav iz 2018 na 2019 manjše kot iz 2019 na 2020. Gostota rasti iz 2018 na 2019 je bila največja pri 5 %, iz 2019 na 2020 pa pri -5 %.
 ```{r grafi6, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide'}
-print(grafp)
+print(graf6)
 ```
 Spodnja simulacija prikazuje BDP na prebivalca posamezne države za prve tri kvartale let 2018, 2019 in 2020. V simulaciji je možno primerjati več držav.
 
@@ -120,18 +122,25 @@ Spodnja simulacija prikazuje BDP na prebivalca posamezne države za prve tri kva
 shinyAppDir("shiny", options=list(width="100%", height=500))
 ```
 
-Kot se vidi v simulaciji in spodnjih grafih je pri vseh državah drugi kvartal imel največji padec, v večini pa v manjši meri tudi tretji. V spodnjih grafih so že narejene skupine držav, ki dosegajo podoben BDP, zato da je lahko prikaz boljši.
+Kot se vidi v simulaciji in spodnjih grafih, je pri vseh državah drugi kvartal v letu 2020 imel padec, v večini pa v manjši meri tudi tretji.
 
-```{r grafi3, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide'}
-print(graftri)
-print(grafstiri)
-print(grafpet)
-print(grafsest)
-print(grafdve)
+
+Na spodnjem grafu je skupaj s Slovenijo 5 držav, ki imajo podoben BDP na prebivalca. Pri vseh je možno v 2. kvartalu leta 2020 opaziti padec, ki je največji pri Španiji. Zanimivo se mi zdi, da je med navedenimi Slovenija v 3. kvartalu leta 2020 edina dosegla večji BDP kot ga je v 1. kvartalu istega leta. Med njimi imata trenutno največje število okužb na sto tisoč prebivalcev Češka in Slovenija, najmanj pa Estonija in Španija. Španija pa je imela prav na začetku epidemije največje število okužb med navedenimi.
+
+```{r grafi7, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide'}
+print(graf3.4)
 ```
 
+Na grafu spodaj je prikazano stanje BDP na prebivalca držav, ki so že nekaj let na vrhu lestvice. Kot že nekaj let zapored je na prvem mestu Luksemburg, ki ima med navedenimi trenutno največje število okužb. Vsa leta je bila najnižje Danska, zadnje leto pa tudi Norveška, ki je imela že pred trenutno krizo ne najbolše gospodarsko stanje. Zanimivo je, da imata obe državi izmed navedenih najnižje število okužb.
+V prilogi si je mogoče pogledati še primerjavo nekaterih drugih skupin držav s podobnim BDP.
+
+```{r grafi8, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide'}
+print(graf3.1)
+```
+
+
 Spodnji zemljevid prikazuje rast BDP iz leta 2018 na 2019 in okuženost posamezne države. Rast je deljena na 6 kategorij (od -13.62 do 4.48 %), okuženost pa na 5 kategorij (od 1000 do 5000 zabeleženih okužb na sto tisoč prebivalcev). Obarvanost posamezne države prikazuje rast, kjer rdeča prikazuje najnižjo rast, zelena pa najvišjo, velikost mehurčkov prikazuje okuženost posamezne države.
-Iz samega zemljevida ni jasno opaziti kakšne povezave med številom zabeleženih okužb in rastjo BDP-a.
+Iz samega zemljevida ni jasno opaziti kakšne povezave med številom zabeleženih okužb in rastjo BDP, ki sem jo morda pričakoval.
 
 ```{r zemljevid1, echo=FALSE, fig.align='center', fig.cap='Zemljevid rasti BDP iz 2019 na 2020 in okuženost posameznih držav', message=FALSE, warning=FALSE, results='hide',fig.width = 12, fig.height = 12}
 tm_shape(merge(zemljevid,
@@ -141,8 +150,47 @@ tm_shape(merge(zemljevid,
   tm_bubbles(size = "Stevilo_okuzb_na_sto_tisoc_prebivalcev", scale=2.5,style="kmeans", col = "red", size.lim=c(60,4200)) +
   tm_layout(main.title = "Zemljevid okuženosti in rasti BDP-a iz 2019 na 2020")
 ```
+***
+# Napredna analiza podatkov
+
+V spodnjem grafu sem z uporabo polinoma 9. stopnje skušal napovedati stanje BDP Evropske unije v prvih treh kvartalih leta 2021. Napoved sicer upošteva samo pretekle podatke BDP, a vseeno kaže dobro gospodarsko rast v prihodnjem letu.
+```{r analiza}
+source("analiza/analiza.r", encoding="UTF-8")
+```
+
+```{r graf5, echo=FALSE, fig.align='center'}
+graf_napoved
+```
+
+***
+# Zaključek
+
+Najbolj zanimiva pri analizi se mi je zdela podobnost stanj različnih držav Evrope. Skoraj vse države so v 2. kvartalu preteklega leta doživele hud gospodarski padec, a so se s pomočjo dodatnih državnih izdatkov umetno povzpele na stanje pred epidemijo.
+
+Kot sem že omenil velike podobnosti med okuženostjo in BDP posamezne države nisem opazil, čeprav je bil to eden od namenov moje analize.
+
+Pri analizi Slovenije se mi je zdelo najbolj zanimivo, da so bile panoge kjer je denarja več veliko bolj prizadete od panog kjer ga je manj, seveda z izjemo obrambe, zdravstva in izobraževanja.
+
 
 
 
 ***
+# Priloge
 
+```{r vizualizacija2, results='hide'}
+source("vizualizacija/vizualizacija.r", encoding="UTF-8")
+```
+
+```{r grafip1, echo=FALSE, fig.align='center', fig.show = 'hold',message=FALSE, warning=FALSE, results='hide'}
+print(graf4.1)
+print(graf4.2)
+print(graf4.3)
+```
+
+```{r grafip2, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide'}
+print(graf3.1)
+print(graf3.2)
+print(graf3.3)
+print(graf3.4)
+print(graf3.5)
+```

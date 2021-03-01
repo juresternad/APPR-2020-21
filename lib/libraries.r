@@ -21,6 +21,7 @@ library(extrafont)
 library(tmap)
 library(scales)
 library(plyr)
+library(gganimate)
 
 options(gsubfn.engine="R")
 
